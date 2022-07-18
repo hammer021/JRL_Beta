@@ -84,6 +84,7 @@ class Login extends CI_Controller
                                         'roleText'=>$result->role,
                                         'name'=>$result->name,
                                         'isAdmin'=>$result->isAdmin,
+                                        'myreff'=>$result->myreff,
                                         'accessInfo'=>$accessInfo,
                                         'lastLogin'=> $lastLogin->createdDtm,
                                         'isLoggedIn' => TRUE

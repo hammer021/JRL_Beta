@@ -106,7 +106,7 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
             </li>
-            <li class="treeview">
+            <!-- <li class="treeview">
               <a href="#">
                 <i class="fa fa-share"></i> <span>Multilevel</span>
                 <span class="pull-right-container">
@@ -138,7 +138,7 @@
                 </li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
               </ul>
-            </li>
+            </li> -->
             <?php
             if($is_admin == 1)
             {

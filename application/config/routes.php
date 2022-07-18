@@ -56,14 +56,14 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 /*********** USER DEFINED ROUTES *******************/
-
+$route['Home/(:any)'] = "Home/Page/$1";
 $route['loginMe'] = 'login/loginMe';
 $route['dashboard'] = 'user';
 $route['logout'] = 'user/logout';
 $route['userListing'] = 'user/userListing';
 $route['userListing/(:num)'] = "user/userListing/$1";
-$route['addNew'] = "user/addNew";
-$route['addNewUser'] = "user/addNewUser";
+$route['addNew/(:any)'] = "Home/addNew/$1";
+$route['addNewUser'] = "Home/addNewUser";
 $route['editOld'] = "user/editOld";
 $route['editOld/(:num)'] = "user/editOld/$1";
 $route['editUser'] = "user/editUser";
@@ -75,6 +75,7 @@ $route['profileUpdate/(:any)'] = "user/profileUpdate/$1";
 
 $route['loadChangePass'] = "user/loadChangePass";
 $route['changePassword'] = "user/changePassword";
+$route['changeRefferal'] = "user/changeRefferal";
 $route['changePassword/(:any)'] = "user/changePassword/$1";
 $route['pageNotFound'] = "user/pageNotFound";
 $route['checkEmailExists'] = "user/checkEmailExists";

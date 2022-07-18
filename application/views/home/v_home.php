@@ -1,7 +1,16 @@
 
 	<div id="fh5co-page"> 
     <!-- Page -->
+<?php 
+//masukkan link reff disini
 
+if ($reff== null) {
+	$linkref="AdminJRL";
+}
+else{
+$linkref = $reff; 
+}
+?>
 	<aside id="fh5co-hero" class="js-fullheight">
 		<div class="flexslider js-fullheight">
 			<ul class="slides">
@@ -14,7 +23,7 @@
 		   				<div class="slider-text-inner">
 		   					<h2><?php echo $h['taskTitle'];?></h2>
 		   					<h3 style="color: white;"><?php echo $h['description'];?></h3>
-		   					<p><a href="<?php echo base_url() ?>addNew" class="btn btn-primary btn-lg">Join Us</a></p>
+		   					<p><a href="<?php echo base_url().'addNew/'.$linkref; ?>" class="btn btn-primary btn-lg">Join Us</a></p>
 		   				</div>
 		   			</div>
 		   		</div>

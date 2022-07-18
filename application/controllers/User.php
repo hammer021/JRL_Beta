@@ -28,6 +28,7 @@ class User extends BaseController
     public function index()
     {
         $this->global['pageTitle'] = 'Beta : Dashboard';
+        $data['reff']= $this->session->userdata ( 'myreff' );
         $data['countTask'] = $this->Task_model->taskAllCount();        
         $data['countUser'] = $this->user_model->userAllCount();        
         $this->loadViews("general/dashboard", $this->global, $data , NULL);
@@ -55,6 +56,8 @@ class User extends BaseController
             
             $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
             
+            $data["userInfo"] = $this->user_model->getUserInfoWithRole($this->vendorId);
+            
             $this->global['pageTitle'] = 'Beta : User Listing';
             
             $this->loadViews("users/users", $this->global, $data, NULL);
@@ -64,22 +67,7 @@ class User extends BaseController
     /**
      * This function is used to load the add new form
      */
-    function addNew()
-    {
-        if(!$this->isAdmin())
-        {
-            $this->loadThis();
-        }
-        else
-        {
-            $this->load->model('user_model');
-            $data['roles'] = $this->user_model->getUserRoles();
-            
-            $this->global['pageTitle'] = 'Beta : Add New User';
-
-            $this->loadViews("users/addNew", $this->global, $data, NULL);
-        }
-    }
+    
 
     /**
      * This function is used to check whether email already exist or not
@@ -99,71 +87,12 @@ class User extends BaseController
         else { echo("false"); }
     }
     
-    function RandomReff($panjang)
-    {          
-        $karakter = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';     
-        $string = '';   
-        for($i = 0; $i < $panjang; $i++) {   
-            $pos = rand(0, strlen($karakter)-1);   
-            $string .= $karakter{$pos};   
-        }   
-        return $string;  
-    }
+    
 
     /**
      * This function is used to add new user to the system
      */
-    function addNewUser()
-    {
-        if(!$this->isAdmin())
-        {
-            $this->loadThis();
-        }
-        else
-        {
-            $this->load->library('form_validation');
-            
-            $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('password','Password','required|max_length[20]');
-            $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
-            $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-
-            
-            if($this->form_validation->run() == FALSE)
-            {
-                $this->addNew();
-            }
-            else
-            {
-                $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
-                $email = strtolower($this->security->xss_clean($this->input->post('email')));
-                $password = $this->input->post('password');
-                $roleId = $this->input->post('role');
-                $refferal = $this->input->post('refferal');
-                $mobile = $this->security->xss_clean($this->input->post('mobile'));
-                $isAdmin = 0;
-                $myreff = $this->RandomReff(11);
-                
-                $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId,
-                        'name'=> $name, 'mobile'=>$mobile, 'isAdmin'=>$isAdmin,
-                        'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:s'),'myreff'=> $myreff,
-                        'refferal'=> $refferal);
-                
-                $this->load->model('user_model');
-                $result = $this->user_model->addNewUser($userInfo);
-                
-                if($result > 0){
-                    $this->session->set_flashdata('success', 'New User created successfully');
-                } else {
-                    $this->session->set_flashdata('error', 'User creation failed');
-                }
-                
-                redirect('addNew');
-            }
-        }
-    }
+    
 
     
     /**
@@ -421,6 +350,32 @@ class User extends BaseController
                 
                 redirect('profile/'.$active);
             }
+        }
+    }
+    function changeRefferal($active = "changereff")
+    {
+        $this->load->library('form_validation');
+        
+        $this->form_validation->set_rules('refferal','New Refferal','required|max_length[15]');
+        
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->profile($active);
+        }
+        else
+        {
+            $refferal = $this->input->post('refferal');            
+           
+            $usersData = array('myreff'=>$refferal, 'updatedBy'=>$this->vendorId,
+                                'updatedDtm'=>date('Y-m-d H:i:s'));
+                
+                $result = $this->user_model->changePassword($this->vendorId, $usersData);
+                
+                if($result > 0) { $this->session->set_flashdata('success', 'New Refferal updation successful'); }
+                else { $this->session->set_flashdata('error', 'New Refferal updation failed'); }
+                
+                redirect('profile/'.$active);
+            
         }
     }
 

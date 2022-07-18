@@ -1,4 +1,15 @@
-<div class="content-wrapper">
+
+	<div id="fh5co-page"> 
+    <!-- Page -->
+	<aside id="fh5co-hero" class="js-fullheight">
+		<div class="flexslider js-fullheight">
+			<ul class="slides">
+		   	<li style="background-image: url(<?php echo base_url().'./theme/images/image_1.jpg'?>);">		   		
+		   	</li>
+		   	</ul>
+	  	</div>
+	</aside>
+	<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -139,3 +150,10 @@
     
 </div>
 <script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>
+
+
+
+<!-- Tutup Page -->
+</div>
+
+

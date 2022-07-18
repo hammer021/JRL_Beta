@@ -44,7 +44,16 @@
    
 		<div class="container">
 			<div class="header-inner">
-            
+            <?php 
+					//masukkan link reff disini
+
+					if ($reff== null) {
+						$linkref="AdminJRL";
+					}
+					else{
+					$linkref = $reff; 
+					}
+					?>
 				<h1><a href="<?php echo base_url().''?>">BetaVersion<span>.</span></a></h1>
 				<nav role="navigation">
 					<ul>
@@ -54,7 +63,7 @@
 						<!-- <li><a href="<?php echo base_url().'artikel'?>">Blog</a></li>
 						<li><a href="<?php echo base_url().'gallery'?>">Gallery</a></li> -->
 						<li><a href="<?php echo base_url().'kontak'?>">Contact</a></li>
-						<li class="cta"><a href="<?php echo base_url().'addNew'?>">Join Us!</a></li>
+						<li class="cta"><a href="<?php echo base_url().'addNew/'.$linkref; ?>">Join Us!</a></li>
 					</ul>
 				</nav>
             

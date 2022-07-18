@@ -52,6 +52,7 @@ $myreff = $userInfo->myreff;
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                         <li class="<?= ($active == "details")? "active" : "" ?>"><a href="#details" data-toggle="tab">Details</a></li>
+                        <li class="<?= ($active == "changereff")? "active" : "" ?>"><a href="#changereff" data-toggle="tab">Change Refferal</a></li>                        
                         <li class="<?= ($active == "changepass")? "active" : "" ?>"><a href="#changepass" data-toggle="tab">Change Password</a></li>                        
                     </ul>
                     <div class="tab-content">
@@ -126,7 +127,28 @@ $myreff = $userInfo->myreff;
                                     <input type="reset" class="btn btn-default" value="Reset" />
                                 </div>
                             </form>
-                        </div>                        
+                        </div>   
+                        
+                        <!-- CHANGE REFF -->
+                        <div class="<?= ($active == "changereff")? "active" : "" ?> tab-pane" id="changereff">
+                            <form role="form" action="<?php echo base_url() ?>changeRefferal" method="post">
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="inputRefferal">Enter New Refferal</label>
+                                                <input type="refferal" class="form-control" id="inputRefferal" placeholder="New Refferal" name="refferal" maxlength="15" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.box-body -->
+            
+                                <div class="box-footer">
+                                    <input type="submit" class="btn btn-primary" value="Submit" />
+                                    <input type="reset" class="btn btn-default" value="Reset" />
+                                </div>
+                            </form>
+                        </div> 
                     </div>
                 </div>
             </div>

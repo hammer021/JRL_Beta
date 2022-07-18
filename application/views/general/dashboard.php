@@ -9,6 +9,19 @@
     
     <section class="content">
         <div class="row">
+        <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h3>0<sup style="font-size: 20px"></sup></h3>
+                  <p>My Web</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-cloud"></i>
+                </div>
+                <a href="<?php echo base_url().'Home/'.$reff; ?>" class="small-box-footer">Open <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-aqua">
@@ -22,19 +35,7 @@
                 <a href="<?php echo base_url(); ?>task" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
-                  <p>Completed Tasks</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
+            
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-yellow">
