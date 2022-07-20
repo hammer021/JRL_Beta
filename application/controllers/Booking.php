@@ -28,7 +28,7 @@ class Booking extends BaseController
      */
     public function index()
     {
-        redirect('booking/bookingListing');
+        redirect('PortfolioList');
     }
     
     /**
@@ -111,7 +111,7 @@ class Booking extends BaseController
                     $this->session->set_flashdata('error', 'Portfolio creation failed');
                 }
                 
-                redirect('booking/bookingListing');
+                redirect('PortfolioList');
             }
         }
     }
@@ -183,7 +183,7 @@ class Booking extends BaseController
                     $this->session->set_flashdata('error', 'Portfolio updation failed');
                 }
                 
-                redirect('booking/bookingListing');
+                redirect('PortfolioList');
             }
         }
     }

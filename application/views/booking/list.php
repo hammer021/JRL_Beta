@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-xs-12 text-right">
                 <div class="form-group">
-                    <a class="btn btn-primary" href="<?php echo base_url(); ?>booking/add"><i class="fa fa-plus"></i> Add New Portfolio</a>
+                    <a class="btn btn-primary" href="<?php echo base_url(); ?>AddPortfolio"><i class="fa fa-plus"></i> Add New Portfolio</a>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                         <td><?php echo $record->description ?></td>
                         <td><?php echo date("d-m-Y", strtotime($record->createdDtm)) ?></td>
                         <td class="text-center">
-                            <a class="btn btn-sm btn-info" href="<?php echo base_url().'booking/edit/'.$record->bookingId; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-sm btn-info" href="<?php echo base_url().'EditPortfolio/'.$record->bookingId; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
                             <a class="btn btn-sm btn-danger deleteBooking" href="#" data-bookingid="<?php echo $record->bookingId; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
