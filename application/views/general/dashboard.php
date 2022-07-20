@@ -13,8 +13,8 @@
               <!-- small box -->
               <div class="small-box bg-green">
                 <div class="inner">
-                  <h3>0<sup style="font-size: 20px"></sup></h3>
-                  <p>My Web</p>
+                  <h3>My Web<sup style="font-size: 20px"></sup></h3>
+                 <p><?php echo $reff;?></p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-cloud"></i>
@@ -41,27 +41,34 @@
               <div class="small-box bg-yellow">
                 <div class="inner">
                   <h3><?php echo $countUser;?></h3>
-                  <p>User</p>
+                <p>My User(by Refferal)</p>
                 </div>
+                
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
                 </div>
-                <a href="<?php echo base_url(); ?>userListing" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                
+                <a href="<?php echo base_url()?>MyUser" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
+            <?php if ($is_admin==1) {?>
+              <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-red">
                 <div class="inner">
-                  <h3>65</h3>
-                  <p>Nothing</p>
+                  <h3><?php echo $countAllUser;?></h3>
+                  <p>All Users</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
+                  <i class="ion ion-person"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?php echo base_url()?>userListing" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
+            <?php }?>
+            
+
+
           </div>
     </section>
 </div>

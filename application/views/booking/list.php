@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Booking Management
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Portfolio Management
         <small>Add, Edit, Delete</small>
       </h1>
     </section>
@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-xs-12 text-right">
                 <div class="form-group">
-                    <a class="btn btn-primary" href="<?php echo base_url(); ?>booking/add"><i class="fa fa-plus"></i> Add New Booking</a>
+                    <a class="btn btn-primary" href="<?php echo base_url(); ?>booking/add"><i class="fa fa-plus"></i> Add New Portfolio</a>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Booking List</h3>
+                    <h3 class="box-title">Portfolio List</h3>
                     <div class="box-tools">
                         <form action="<?php echo base_url() ?>booking/bookingListing" method="POST" id="searchList">
                             <div class="input-group">
@@ -64,18 +64,20 @@
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tr>
-                        <th>Room Name</th>
+                        <th>No</th>
+                        <th>Name</th>
                         <th>Description</th>
                         <th>Created On</th>
                         <th class="text-center">Actions</th>
                     </tr>
                     <?php
                     if(!empty($records))
-                    {
+                    { $ii=1;
                         foreach($records as $record)
                         {
                     ?>
                     <tr>
+                        <td><?php echo $ii; ?></td>
                         <td><?php echo $record->roomName ?></td>
                         <td><?php echo $record->description ?></td>
                         <td><?php echo date("d-m-Y", strtotime($record->createdDtm)) ?></td>
@@ -85,7 +87,7 @@
                         </td>
                     </tr>
                     <?php
-                        }
+                        $ii++; }
                     }
                     ?>
                   </table>

@@ -34,7 +34,7 @@
 
 
 			<div class="col-md-12 fh5co-copyright text-center">
-				<p>&copy; 2022 by <a href="#" target="_blank">Hammer</a>. All Rights Reserved.</p>
+				<p>&copy; 2022 by <a href="https://www.instagram.com/exwp__/" target="_blank">Hammer</a>. All Rights Reserved.</p>
 			</div>
 
 		</div>

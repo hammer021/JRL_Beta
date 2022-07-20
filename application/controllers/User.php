@@ -30,7 +30,8 @@ class User extends BaseController
         $this->global['pageTitle'] = 'Beta : Dashboard';
         $data['reff']= $this->session->userdata ( 'myreff' );
         $data['countTask'] = $this->Task_model->taskAllCount();        
-        $data['countUser'] = $this->user_model->userAllCount();        
+        $data['countUser'] = $this->user_model->userAllCountReff($this->myreff);        
+        $data['countAllUser'] = $this->user_model->userAllCount();        
         $this->loadViews("general/dashboard", $this->global, $data , NULL);
     }
     
@@ -39,12 +40,12 @@ class User extends BaseController
      */
     function userListing()
     {
-        if(!$this->isAdmin())
-        {
-            $this->loadThis();
-        }
-        else
-        {        
+        // if(!$this->isAdmin())
+        // {
+        //     $this->loadThis();
+        // }
+        // else
+        // {        
             $searchText = $this->security->xss_clean($this->input->post('searchText'));
             $data['searchText'] = $searchText;
             
@@ -61,9 +62,34 @@ class User extends BaseController
             $this->global['pageTitle'] = 'Beta : User Listing';
             
             $this->loadViews("users/users", $this->global, $data, NULL);
-        }
+        // }
     }
+    function MyUser()
+    {
+        // if(!$this->isAdmin())
+        // {
+        //     $this->loadThis();
+        // }
+        // else
+        // {        
+            $searchText = $this->security->xss_clean($this->input->post('searchText'));
+            $data['searchText'] = $searchText;
+            
+            $this->load->library('pagination');
+            
+            $count = $this->user_model->MyUserListingCount($searchText,$this->myreff);
 
+			$returns = $this->paginationCompress ( "MyUser/", $count, 10 );
+            
+            $data['userRecords'] = $this->user_model->MyUserListing($searchText, $returns["page"], $returns["segment"],$this->myreff);
+            
+            $data["userInfo"] = $this->user_model->getUserInfoWithRole($this->vendorId);
+            
+            $this->global['pageTitle'] = 'Beta : My User';
+            
+            $this->loadViews("users/users", $this->global, $data, NULL);
+        // }
+    }
     /**
      * This function is used to load the add new form
      */

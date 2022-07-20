@@ -57,10 +57,15 @@ $route['translate_uri_dashes'] = FALSE;
 
 /*********** USER DEFINED ROUTES *******************/
 $route['Home/(:any)'] = "Home/Page/$1";
+$route['About'] = "Home/about";
+$route['Portfolio'] = "Home/portfolio";
 $route['loginMe'] = 'login/loginMe';
 $route['dashboard'] = 'user';
 $route['logout'] = 'user/logout';
 $route['userListing'] = 'user/userListing';
+$route['PortfolioList'] = 'booking/bookingListing';
+$route['MyUser'] = 'user/MyUser';
+$route['MyUser/(:num)'] = "user/MyUser/$1";
 $route['userListing/(:num)'] = "user/userListing/$1";
 $route['addNew/(:any)'] = "Home/addNew/$1";
 $route['addNewUser'] = "Home/addNewUser";

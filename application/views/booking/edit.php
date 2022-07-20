@@ -8,8 +8,8 @@ $description = $bookingInfo->description;
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Booking Management
-        <small>Add / Edit Booking</small>
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Portfolio Management
+        <small>Add / Edit Portfolio</small>
       </h1>
     </section>
     
@@ -22,7 +22,7 @@ $description = $bookingInfo->description;
                 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter Booking Details</h3>
+                        <h3 class="box-title">Enter Portfolio Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
@@ -31,7 +31,7 @@ $description = $bookingInfo->description;
                         <div class="row">
                                 <div class="col-md-6">                                
                                     <div class="form-group">
-                                        <label for="roomName">Room Name</label>
+                                        <label for="roomName">Name</label>
                                         <input type="text" class="form-control required" value="<?php echo $roomName; ?>" id="roomName" name="roomName" maxlength="256" />
                                         <input type="hidden" value="<?php echo $bookingId; ?>" name="bookingId" id="bookingId" />
                                     </div>

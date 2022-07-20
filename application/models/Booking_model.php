@@ -51,7 +51,15 @@ class Booking_model extends CI_Model
         $result = $query->result();        
         return $result;
     }
-    
+    function GetPortListing()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_booking as BaseTbl');
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->order_by('BaseTbl.bookingId', 'DESC');
+        $query = $this->db->get()->result_array();     
+        return $query;
+    }
     /**
      * This function is used to add new booking to system
      * @return number $insert_id : This is last inserted id

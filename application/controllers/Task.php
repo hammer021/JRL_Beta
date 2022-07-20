@@ -28,7 +28,15 @@ class Task extends BaseController
      */
     public function index()
     {
+        if(!$this->isAdmin())
+        {
+            $this->loadThis();
+        }
+        else
+        {
+        
         redirect('task/taskListing');
+        }
     }
     
     /**

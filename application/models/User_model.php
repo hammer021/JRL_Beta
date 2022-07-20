@@ -31,6 +31,39 @@ class User_model extends CI_Model
         
         return $query->num_rows();
     }
+    function MyUserListingCount($searchText = '',$reff)
+    {
+        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name,
+        BaseTbl.mobile, BaseTbl.isAdmin, BaseTbl.createdDtm, 
+        Role.role,BaseTbl.myreff,BaseTbl.refferal');
+        $this->db->from('tbl_users as BaseTbl');
+        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
+        $this->db->where('BaseTbl.refferal',$reff);
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.email  LIKE '%".$searchText."%'
+                            OR  BaseTbl.name  LIKE '%".$searchText."%'
+                            OR  BaseTbl.mobile  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        // $this->db->where('BaseTbl.roleId !=', 1);
+        $query = $this->db->get();
+        
+        return $query->num_rows();
+    }
+    function userAllCountReff($reff)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_users as BaseTbl');
+        $this->db->where('BaseTbl.roleId', 2);
+        $this->db->where('BaseTbl.refferal', $reff);
+        $this->db->where('BaseTbl.isDeleted', 0);
+        // $this->db->where('BaseTbl.roleId !=', 1);
+        $query = $this->db->get();
+        
+        return $query->num_rows();
+    }
+
     function userAllCount()
     {
         $this->db->select('*');
@@ -70,7 +103,29 @@ class User_model extends CI_Model
         $result = $query->result();        
         return $result;
     }
-    
+    function MyUserListing($searchText = '', $page, $segment,$reff)
+    {
+        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, 
+        BaseTbl.isAdmin, BaseTbl.createdDtm,BaseTbl.myreff,BaseTbl.refferal, 
+        Role.role, Role.status as roleStatus');
+        $this->db->from('tbl_users as BaseTbl');
+        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
+        $this->db->where('BaseTbl.refferal',$reff);
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.email  LIKE '%".$searchText."%'
+                            OR  BaseTbl.name  LIKE '%".$searchText."%'
+                            OR  BaseTbl.mobile  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        // $this->db->where('BaseTbl.roleId !=', 1);
+        $this->db->order_by('BaseTbl.userId', 'DESC');
+        $this->db->limit($page, $segment);
+        $query = $this->db->get();
+        
+        $result = $query->result();        
+        return $result;
+    }
     /**
      * This function is used to get the user roles information
      * @return array $result : This is result of the query

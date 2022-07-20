@@ -68,12 +68,13 @@ $linkref = $reff;
 
 		<img src="<?php echo base_url().'./theme/images/image_1.jpg'?>" alt="" class="img-responsive">
 		<div class="fh5co-box animate-box">
+		<iframe width="450" height="315" src="https://www.youtube.com/embed/HFT7ATLQQx8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 			<?php foreach ($foot as $f) {?>				
 			<h2><?php echo $f['taskTitle'];?></h2>
 			<p><?php echo $f['description'];?></p>
-			<p><a href="<?php echo base_url().'portfolio'?>" 
+			<!-- <p><a href="<?php echo base_url().'portfolio'?>" 
 			class="btn btn-primary btn-outline with-arrow">Get started 
-			<i class="icon-arrow-right"></i></a></p>
+			<i class="icon-arrow-right"></i></a></p> -->
 			<?php }?>
 
 		</div>

@@ -53,7 +53,7 @@ class Booking extends BaseController
             
             $data['records'] = $this->bm->bookingListing($searchText, $returns["page"], $returns["segment"]);
             
-            $this->global['pageTitle'] = 'JRL : Booking';
+            $this->global['pageTitle'] = 'JRL : Portfolio';
             
             $this->loadViews("booking/list", $this->global, $data, NULL);
         }
@@ -70,7 +70,7 @@ class Booking extends BaseController
         }
         else
         {
-            $this->global['pageTitle'] = 'JRL : Add New Booking';
+            $this->global['pageTitle'] = 'JRL : Add New Portfolio';
 
             $this->loadViews("booking/add", $this->global, NULL, NULL);
         }
@@ -106,9 +106,9 @@ class Booking extends BaseController
                 $result = $this->bm->addNewBooking($bookingInfo);
                 
                 if($result > 0) {
-                    $this->session->set_flashdata('success', 'New Booking created successfully');
+                    $this->session->set_flashdata('success', 'New Portfolio created successfully');
                 } else {
-                    $this->session->set_flashdata('error', 'Booking creation failed');
+                    $this->session->set_flashdata('error', 'Portfolio creation failed');
                 }
                 
                 redirect('booking/bookingListing');
@@ -136,7 +136,7 @@ class Booking extends BaseController
             
             $data['bookingInfo'] = $this->bm->getBookingInfo($bookingId);
 
-            $this->global['pageTitle'] = 'JRL : Edit Booking';
+            $this->global['pageTitle'] = 'JRL : Edit Portfolio';
             
             $this->loadViews("booking/edit", $this->global, $data, NULL);
         }
@@ -176,11 +176,11 @@ class Booking extends BaseController
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Booking updated successfully');
+                    $this->session->set_flashdata('success', 'Portfolio updated successfully');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Booking updation failed');
+                    $this->session->set_flashdata('error', 'Portfolio updation failed');
                 }
                 
                 redirect('booking/bookingListing');

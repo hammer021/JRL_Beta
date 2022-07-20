@@ -58,11 +58,11 @@
 				<nav role="navigation">
 					<ul>
 						<li><a href="<?php echo base_url().''?>">Home</a></li>
-						<li><a href="<?php echo base_url().'about'?>">About</a></li>
-						<li><a href="<?php echo base_url().'portfolio'?>">Portfolio</a></li>
+						<li><a href="<?php echo base_url().'About'?>">About</a></li>
+						<li><a href="<?php echo base_url().'Portfolio'?>">Portfolio</a></li>
 						<!-- <li><a href="<?php echo base_url().'artikel'?>">Blog</a></li>
 						<li><a href="<?php echo base_url().'gallery'?>">Gallery</a></li> -->
-						<li><a href="<?php echo base_url().'kontak'?>">Contact</a></li>
+						<!-- <li><a href="<?php echo base_url().'kontak'?>">Contact</a></li> -->
 						<li class="cta"><a href="<?php echo base_url().'addNew/'.$linkref; ?>">Join Us!</a></li>
 					</ul>
 				</nav>

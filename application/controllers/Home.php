@@ -15,6 +15,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Task_model', 'task');
+        $this->load->model('Booking_model', 'porto');
         // $this->isLoggedIn();   
     }
     public function index()
@@ -24,6 +25,20 @@ class Home extends CI_Controller
         $data['konten']=$this->task->getKonten('konten');
         $this->load->view('home/v_head');
         $this->load->view('home/v_home',$data);
+        $this->load->view('home/v_footer');
+    }
+    public function about()
+    {
+        $this->load->view('home/v_head');
+        $this->load->view('home/v_about');
+        $this->load->view('home/v_footer');
+    }
+    public function portfolio()
+    {
+        $data['porto']=$this->porto->GetPortListing();
+
+        $this->load->view('home/v_head');
+        $this->load->view('home/v_portfolio',$data);
         $this->load->view('home/v_footer');
     }
     public function Page($refferal= null)
