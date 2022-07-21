@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <label for="description">Description</label>
                                         <textarea  onKeyPress="check_length(this.form)" onKeyDown="check_length(this.form)" rows="4" cols="30" class="form-control required" id="description" name="description"></textarea>
-                                        <input  disabled size=1 value=50 name=text_num> Characters Left
+                                        <input  disabled size=1 value=75 name=text_num> Characters Left
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -48,11 +48,6 @@
                             </div>
                             
                         </div><!-- /.box-body -->
-    
-
-         
-
-
 
                         <div class="box-footer">
                             <input type="submit" class="btn btn-primary" value="Submit" />
