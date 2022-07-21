@@ -11,7 +11,7 @@
     
         <div class="row">
             <!-- left column -->
-            <div class="col-md-8">
+            <div class="col-md-12">
               <!-- general form elements -->
                 
                 <div class="box box-primary">
@@ -20,7 +20,7 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="addTask" action="<?php echo base_url() ?>task/addNewTask" method="post" role="form">
+                    <form role="form" enctype="multipart/form-data" id="addTask" action="<?php echo base_url() ?>task/addNewTask" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
@@ -36,9 +36,20 @@
                                         <textarea class="form-control required" id="description" name="description"></textarea>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="gambar">Picture</label>
+                                        <input type="file" name="gambar" class="dropify" data-height="250">
+                                    </div>
+                                </div>
                             </div>
                         </div><!-- /.box-body -->
     
+
+         
+
+
+
                         <div class="box-footer">
                             <input type="submit" class="btn btn-primary" value="Submit" />
                             <input type="reset" class="btn btn-default" value="Reset" />
@@ -79,3 +90,17 @@
     </section>
     
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.dropify').dropify({
+            messages: {
+                default: 'Drag atau drop untuk memilih gambar',
+                replace: 'Ganti',
+                remove:  'Hapus',
+                error:   'error'
+            }
+        });
+    });
+     
+</script>

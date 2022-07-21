@@ -91,7 +91,7 @@
                             <a class="btn btn-sm btn-info" href="<?php echo base_url().'editOld/'.$record->userId; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
                             <?php 
                             if($is_admin == 1){?>
-                            <a class="btn btn-sm btn-danger deleteUser" href="#" data-userid="<?php echo $record->userId; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-sm btn-danger deleteContent" href="#" data-userid="<?php echo $record->userId; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                             <?php } ?>
                         </td>
                     </tr>

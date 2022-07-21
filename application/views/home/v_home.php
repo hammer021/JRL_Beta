@@ -39,26 +39,19 @@ $linkref = $reff;
 	<div id="fh5co-why-us" class="animate-box">
 		<div class="container">
 			<div class="row">
-				<?php foreach($konten as $k){ ?> 
+				<?php 
+				$i=0;
+				foreach($konten as $k){
+				if($i < 6){	
+				?> 
 				<div class="col-md-4 text-center item-block">
-					<span class="icon"><img src="<?php echo base_url().'./theme/images/30.svg'?>" class="img-responsive"></span>
+					<span class="icon"><img height="700" width="40%" src="<?php echo base_url().'./assets/images/konten/'.$k['gambar'];?>" class="img-responsive"></span>
 					<h3><?php echo $k['taskTitle'];?></h3>
 					<p><?php echo $k['description'];?></p>
 					<p><a href="<?php echo base_url().'portfolio'?>" class="btn btn-primary btn-outline with-arrow">Learn more <i class="icon-arrow-right"></i></a></p>
 				</div>
-				<?php }?>
-				<!-- <div class="col-md-4 text-center item-block">
-					<span class="icon"><img src="<?php echo base_url().'./theme/images/18.svg'?>" class="img-responsive"></span>
-					<h3>Test</h3>
-					<p>Konsultasi kan kebutuhan IT anda pada kami dan ketahui layanan lain yang kami berikan.</p>
-					<p><a href="<?php echo base_url().'portfolio'?>" class="btn btn-primary btn-outline with-arrow">Learn more <i class="icon-arrow-right"></i></a></p>
-				</div>
-				<div class="col-md-4 text-center item-block">
-					<span class="icon"><img src="<?php echo base_url().'./theme/images/27.svg'?>" class="img-responsive"></span>
-					<h3>Test</h3>
-					<p>Bangun identitas bisnis dan usaha anda di dunia Internet melalui Website.</p>
-					<p><a href="<?php echo base_url().'portfolio'?>" class="btn btn-primary btn-outline with-arrow">Learn more <i class="icon-arrow-right"></i></a></p>
-				</div> -->
+				<?php }
+					$i++;}?>
 			</div>
 		</div>
 	</div>

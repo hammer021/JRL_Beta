@@ -99,14 +99,13 @@ class Task_model extends CI_Model
     }
     function getKonten($tipe)
     {
-        $this->db->select('taskId, taskTitle, description');
+        $this->db->select('*');
         $this->db->from('tbl_task');
         $this->db->where('isDeleted', 0);    
         $this->db->where('tipe', $tipe);
         $query = $this->db->get()->result_array();        
         return $query;
     }
-    
     
     
     /**

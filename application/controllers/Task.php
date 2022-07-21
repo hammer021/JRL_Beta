@@ -20,6 +20,8 @@ class Task extends BaseController
         $this->load->model('Task_model', 'tm');
         $this->isLoggedIn();
         $this->module = 'Task';
+        $this->load->library('upload');
+        $this->load->helper('url', 'form'); 
     }
 
     /**
@@ -67,6 +69,8 @@ class Task extends BaseController
         }
     }
 
+    
+
     /**
      * This function is used to load the add new form
      */
@@ -87,6 +91,38 @@ class Task extends BaseController
     /**
      * This function is used to add new user to the system
      */
+
+    function upload_image(){
+        $config['upload_path'] = './assets/images/konten/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+ 
+        $this->upload->initialize($config);
+        if(!empty($_FILES['gambar']['name'])){
+ 
+            if ($this->upload->do_upload('gambar')){
+                $gbr = $this->upload->data();
+                //Compress Image
+                $config['image_library']='gd2';
+                $config['source_image']='./assets/images/konten/'.$gbr['file_name'];
+                $config['create_thumb']= FALSE;
+                $config['maintain_ratio']= FALSE;
+                $config['quality']= '50%';
+                $config['width']= 600;
+                $config['height']= 400;
+                $config['new_image']= './assets/images/konten/'.$gbr['file_name'];
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+ 
+                $gambar=$gbr['file_name'];
+            }
+                      
+        }else{
+            echo "Gambar yang diupload kosong";
+        }
+                 
+    }
+
     function addNewTask()
     {
         if(!$this->hasCreateAccess())
@@ -108,18 +144,57 @@ class Task extends BaseController
             {
                 $taskTitle = $this->security->xss_clean($this->input->post('taskTitle'));
                 $description = $this->security->xss_clean($this->input->post('description'));
+                $gam = $this->security->xss_clean($this->input->post('gambar'));
+                $config['upload_path'] = './assets/images/konten/'; //path folder
+                $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+                $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+                $config['max_size'] = 2000;
+                $this->upload->initialize($config);
+                if(!empty($_FILES['gambar']['name'])){        
+                    if ($this->upload->do_upload('gambar')){
+                        $gbr = $this->upload->data();
+                        //Compress Image
+                        $config['image_library']='gd2';
+                        $config['source_image']='./assets/images/konten/'.$gbr['file_name'];
+                        $config['create_thumb']= FALSE;
+                        $config['maintain_ratio']= FALSE;
+                        $config['quality']= '50%';
+                        $config['width']= 600;
+                        $config['height']= 600;
+                        $config['new_image']= './assets/images/konten/'.$gbr['file_name'];
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
+        
+                        $gambar=$gbr['file_name'];
+                        $taskInfo = array(  'taskTitle'=>$taskTitle, 
+                                            'description'=>$description,    
+                                            'gambar'=>$gambar,    
+                                            'tipe'=>'konten',    
+                                            'createdBy'=>$this->vendorId, 
+                                            'createdDtm'=>date('Y-m-d H:i:s'));
                 
-                $taskInfo = array('taskTitle'=>$taskTitle, 'description'=>$description, 'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:s'));
-                
-                $result = $this->tm->addNewTask($taskInfo);
-                
-                if($result > 0) {
-                    $this->session->set_flashdata('success', 'New Task created successfully');
-                } else {
-                    $this->session->set_flashdata('error', 'Task creation failed');
+                        $result = $this->tm->addNewTask($taskInfo);
+                        
+                        if($result > 0) {
+                            $this->session->set_flashdata('success', 'New Task created successfully');
+                        } else {
+                            $this->session->set_flashdata('error', 'Task creation failed');
+                        }
+                        
+                        redirect('ContentListing');
+                    }else {
+                        $this->session->set_flashdata('error', 'The uploaded image is failed');
+                        redirect('ContentListing');
+                    }
+                            
+                }else{
+                    $this->session->set_flashdata('error', 'The uploaded image is empty');
+                    redirect('ContentListing');
+
                 }
+
+
                 
-                redirect('task/taskListing');
             }
         }
     }
@@ -191,10 +266,36 @@ class Task extends BaseController
                     $this->session->set_flashdata('error', 'Task updation failed');
                 }
                 
-                redirect('task/taskListing');
+                redirect('ContentListing');
             }
         }
     }
+
+
+    function deleteContent($id)
+    {
+        if(!$this->isAdmin())
+        {
+            echo(json_encode(array('status'=>'access')));
+        }
+        else
+        {
+            $_id = $this->db->get_where('tbl_task',['taskId' => $id])->row();
+            $query = $this->db->delete('tbl_task',['taskId'=>$id]);
+            if($query){
+                unlink("./assets/images/konten/".$_id->gambar);
+                $this->session->set_flashdata('success', 'Delete successfully');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Delete failed');
+            }
+            
+            redirect('ContentListing');
+        }
+    }
+
+
 }
 
 ?>

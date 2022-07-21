@@ -83,7 +83,7 @@
                         <td><?php echo date("d-m-Y", strtotime($record->createdDtm)) ?></td>
                         <td class="text-center">
                             <a class="btn btn-sm btn-info" href="<?php echo base_url().'task/edit/'.$record->taskId; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a class="btn btn-sm btn-danger deletetask" href="#" data-taskid="<?php echo $record->taskId; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                            <a  onclick="return confirm('Are you sure to delete this Content ?')" class="btn btn-sm btn-danger" href="<?php echo base_url().'deleteContent/'.$record->taskId; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php

@@ -6,7 +6,11 @@
         </div>
         <strong>Copyright &copy; 2022 <a href="<?php echo base_url(); ?>">BetaVersion</a>.</strong> All rights reserved.
     </footer>
-    
+    <script src="<?php echo base_url(); ?>assets/dist/js/app.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url().'assets/dropify/dropify.min.js'?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url().'assets/bootstrap/js/bootstrap.js'?>"></script>
     <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js" type="text/javascript"></script>
     <!-- <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js" type="text/javascript"></script> -->
