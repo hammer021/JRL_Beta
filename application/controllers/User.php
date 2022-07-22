@@ -48,6 +48,7 @@ class User extends BaseController
         // {        
             $searchText = $this->security->xss_clean($this->input->post('searchText'));
             $data['searchText'] = $searchText;
+            $data['page']="UserAll";
             
             $this->load->library('pagination');
             
@@ -74,7 +75,7 @@ class User extends BaseController
         // {        
             $searchText = $this->security->xss_clean($this->input->post('searchText'));
             $data['searchText'] = $searchText;
-            
+            $data['page']="MyUser";
             $this->load->library('pagination');
             
             $count = $this->user_model->MyUserListingCount($searchText,$this->myreff);

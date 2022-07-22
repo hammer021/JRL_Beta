@@ -44,6 +44,7 @@ class User_model extends CI_Model
                             OR  BaseTbl.name  LIKE '%".$searchText."%'
                             OR  BaseTbl.mobile  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
+
         }
         $this->db->where('BaseTbl.isDeleted', 0);
         // $this->db->where('BaseTbl.roleId !=', 1);
