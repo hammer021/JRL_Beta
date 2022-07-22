@@ -37,6 +37,7 @@
                                         <input  disabled size=1 value=75 name=text_num> Characters Left
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="gambar">Picture</label>

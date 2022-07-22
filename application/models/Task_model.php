@@ -89,7 +89,7 @@ class Task_model extends CI_Model
      */
     function getTaskInfo($taskId)
     {
-        $this->db->select('taskId, taskTitle, description');
+        $this->db->select('*');
         $this->db->from('tbl_task');
         $this->db->where('taskId', $taskId);
         $this->db->where('isDeleted', 0);

@@ -2,6 +2,9 @@
 $taskId = $taskInfo->taskId;
 $taskTitle = $taskInfo->taskTitle;
 $description = $taskInfo->description;
+$link = $taskInfo->link;
+$tipe = $taskInfo->tipe;
+$gambar = $taskInfo->gambar;
 ?>
 
 <div class="content-wrapper">
@@ -34,15 +37,37 @@ $description = $taskInfo->description;
                                         <label for="taskTitle">Content Title</label>
                                         <input type="text" class="form-control required" value="<?php echo $taskTitle; ?>" id="taskTitle" name="taskTitle" maxlength="256" />
                                         <input type="hidden" value="<?php echo $taskId; ?>" name="taskId" id="taskId" />
+                                        <input type="hidden" value="<?php echo $tipe; ?>" name="tipe" id="tipe" />
                                     </div>
                                     
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="description">Description</label>
-                                        <textarea class="form-control required" id="description" name="description"><?php echo $description; ?></textarea>
+                                        <textarea  onKeyPress="check_length(this.form)" onKeyDown="check_length(this.form)" 
+                                        rows="4" cols="30" class="form-control required" id="description" name="description"><?php echo $description; ?></textarea>
+                                        <input  disabled size=1 value=75 name=text_num> Characters Left
                                     </div>
                                 </div>
+                                <?php if($tipe=="foot"){?> 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="link">Link Video</label>
+                                        <input type="text" class="form-control" id="link" value="<?php echo $link; ?>" name="link">
+                                    </div>
+                                </div>
+                                <?php } elseif ($tipe=="konten" || $tipe=="head") {?>
+                                    <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="gambar">Picture</label></br>
+                                        <img width="250px" src="<?php echo base_url().'./assets/images/konten/'.$gambar;?>">
+                                        <input type="file" value="<?php echo $gambar;?>" name="gambar" class="dropify" data-height="250">
+                                    </div>
+                                </div>
+                                <?php }?>
+
+                               
+
                             </div>
                         </div><!-- /.box-body -->
     
@@ -85,3 +110,35 @@ $description = $taskInfo->description;
         </div>
     </section>
 </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.dropify').dropify({
+            messages: {
+                default: 'Drag atau drop untuk memilih gambar',
+                replace: 'Ganti',
+                remove:  'Hapus',
+                error:   'error'
+            }
+        });
+    });
+     
+</script>
+<script language=JavaScript>
+function check_length(my_form)
+{
+maxLen = 75; // max number of characters input
+if (my_form.description.value.length >= maxLen) {
+// Alert message if maximum limit is reached. 
+// If required Alert can be removed. 
+var msg = "You have reached your maximum limit of characters allowed";
+alert(msg);
+// Reached the Maximum length so trim the textarea
+	my_form.description.value = my_form.description.value.substring(0, maxLen);
+ }
+else{ // Maximum length not reached so update the value of my_text counter
+	my_form.text_num.value = maxLen - my_form.description.value.length;
+}
+}
+</script>

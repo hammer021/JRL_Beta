@@ -16,13 +16,13 @@ $linkref = $reff;
 			<ul class="slides">
 				<?php foreach($head as $h){?>
 
-		   	<li style="background-image: url(<?php echo base_url().'./theme/images/slide_1.jpeg'?>);">
+		   	<li style="background-image: url(<?php echo base_url().'./assets/images/konten/'.$h['gambar'];?>);">
 		   		<div class="overlay-gradient"></div>
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
-		   					<h2><?php echo $h['taskTitle'];?></h2>
-		   					<h3 style="color: white;"><?php echo $h['description'];?></h3>
+		   					<h2 style="color: black;"><?php echo $h['taskTitle'];?></h2>
+		   					<h3 style="color: black;"><?php echo $h['description'];?></h3>
 		   					<p><a href="<?php echo base_url().'addNew/'.$linkref; ?>" class="btn btn-primary btn-lg">Join Us</a></p>
 		   				</div>
 		   			</div>
@@ -61,8 +61,9 @@ $linkref = $reff;
 
 		<img src="<?php echo base_url().'./theme/images/image_1.jpg'?>" alt="" class="img-responsive">
 		<div class="fh5co-box animate-box">
-		<iframe width="450" height="315" src="https://www.youtube.com/embed/HFT7ATLQQx8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-			<?php foreach ($foot as $f) {?>				
+			<?php foreach ($foot as $f) {?>	
+		<iframe width="450" height="315" src="<?php echo $f['link'];?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 			<h2><?php echo $f['taskTitle'];?></h2>
 			<p><?php echo $f['description'];?></p>
 			<!-- <p><a href="<?php echo base_url().'portfolio'?>" 
