@@ -254,16 +254,16 @@ class Task extends BaseController
                 $taskTitle = $this->security->xss_clean($this->input->post('taskTitle'));
                 $description = $this->security->xss_clean($this->input->post('description'));
                 $link = $this->security->xss_clean($this->input->post('link'));
-                $tipe = $this->security->xss_clean($this->input->post('tipe'));
                 $id = $this->security->xss_clean($this->input->post('taskId'));
+                $tipe = $this->security->xss_clean($this->input->post('tipe'));
                 $_id = $this->db->get_where('tbl_task',['taskId' => $id])->row();
                 $config['upload_path'] = './assets/images/konten/'; //path folder
                 $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
                 $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
                 $config['max_size'] = 2000;
                 $this->upload->initialize($config);
-                if(!empty($_FILES['gambar']['name']) && $tipe =="konten"){  
                 unlink("./assets/images/konten/".$_id->gambar);
+                if(!empty($_FILES['gambar']['name'])){  
                     if ($this->upload->do_upload('gambar')){
                         $gbr = $this->upload->data();
                         //Compress Image
@@ -272,8 +272,13 @@ class Task extends BaseController
                         $config['create_thumb']= FALSE;
                         $config['maintain_ratio']= FALSE;
                         $config['quality']= '50%';
-                        $config['width']= 600;
-                        $config['height']= 600;
+                        if($tipe == "konten"){
+                            $config['width']= 600;
+                            $config['height']= 600;
+                        }else{
+                            $config['width']= 1400;
+                            $config['height']= 600;
+                        }
                         $config['new_image']= './assets/images/konten/'.$gbr['file_name'];
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
@@ -281,7 +286,8 @@ class Task extends BaseController
                         $gambar=$gbr['file_name'];
                         $taskInfo = array(  'taskTitle'=>$taskTitle, 
                                             'description'=>$description,
-                                            'gambar'=>$gambar,    
+                                            'gambar'=>$gambar,
+                                            'link'=>$link,    
                                             'updatedBy'=>$this->vendorId, 
                                             'updatedDtm'=>date('Y-m-d H:i:s'));
                         
@@ -303,30 +309,10 @@ class Task extends BaseController
                         redirect('ContentListing');
                     }
             
-                }elseif ($tipe =="foot" || $tipe =="head") {
-                    $taskInfo = array(      'taskTitle'=>$taskTitle, 
-                                            'description'=>$description,
-                                            'link'=>$link,    
-                                            'updatedBy'=>$this->vendorId, 
-                                            'updatedDtm'=>date('Y-m-d H:i:s'));
-                        
-                $result = $this->tm->editTask($taskInfo, $taskId);
-                
-                if($result == true)
-                {
-                    $this->session->set_flashdata('success', 'Task updated successfully');
-                }
-                else
-                {
-                    $this->session->set_flashdata('error', 'Task updation failed');
-                }
-                
-                redirect('ContentListing');
-                }
-                
-                
+                }            
                 else {
-                    
+                    $this->session->set_flashdata('error', 'The image is Null');
+                        redirect('ContentListing');
                 }
             }
         }

@@ -40,9 +40,9 @@
     
 
 	<header id="fh5co-header">
-        <nav class="navbar navbar-inverse navbar-fixed-top">
    
 		<div class="container">
+
 			<div class="header-inner">
             <?php 
 					//masukkan link reff disini
@@ -64,12 +64,32 @@
 						<li><a href="<?php echo base_url().'gallery'?>">Gallery</a></li> -->
 						<!-- <li><a href="<?php echo base_url().'kontak'?>">Contact</a></li> -->
 						<li class="cta"><a href="<?php echo base_url().'addNew/'.$linkref; ?>">Join Us!</a></li>
+						<li class="cta"><a href="<?php echo base_url().'dashboard'; ?>">Login!</a></li>
 					</ul>
 				</nav>
             
 			</div>
+        
 		</div>
-        </nav>
+	<nav class="navbar navbar navbar-fixed-bottom">
+		<div class="container">
+		<!-- <div class="header-inner"> -->
+
+
+	<nav role="navigation">
+
+					<!-- <ul>						
+						<li> -->
+						<a href="<?php echo base_url().'addNew/'.$linkref; ?>">
+						<img src="<?php echo base_url().'./assets/images/joinus.png';?>" 
+						alt="google logo" width="80" border=0> 
+						</a>
+						<!-- </li>
+					</ul> -->
+				</nav>
+		<!-- </div> -->
+		</div>
+    </nav>
 	</header>
 
 

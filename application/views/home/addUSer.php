@@ -4,21 +4,31 @@
 	<aside id="fh5co-hero" class="js-fullheight">
 		<div class="flexslider js-fullheight">
 			<ul class="slides">
-		   	<li style="background-image: url(<?php echo base_url().'./theme/images/image_1.jpg'?>);">		   		
-		   	</li>
+		   	<li style="background-image: url(<?php echo base_url().'./theme/images/image_1.jpg'?>);height='40';" >		   		
+               <div class="overlay-gradient"></div>
+		   		<div class="container">
+		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+		   				<div class="slider-text-inner">
+		   					<h2 style="color: black;">Isikan sesuai data diri anda</h2>
+		   					<!-- <h3 style="color: black;"></h3> -->
+		   					<p></p>
+		   				</div>
+		   			</div>
+		   		</div>   	
+        </li>
 		   	</ul>
 	  	</div>
 	</aside>
-	<div class="content-wrapper">
+	<div id="fh5co-why-us" class="animate-box" >
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <div class="container">
       <h1>
         <i class="fa fa-users"></i> User Management
         <small>Add / Edit User</small>
       </h1>
-    </section>
+    </div>
     
-    <section class="content">
+    <div class="container">
     
         <div class="row">
             <!-- left column -->
@@ -146,7 +156,7 @@
                 </div>
             </div>
         </div>    
-    </section>
+   </div>
     
 </div>
 <script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>

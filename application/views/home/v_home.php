@@ -58,10 +58,10 @@ $linkref = $reff;
 
 
 	<div class="fh5co-section-with-image">
+	<?php foreach ($foot as $f) {?>	
 
-		<img src="<?php echo base_url().'./theme/images/image_1.jpg'?>" alt="" class="img-responsive">
+		<img src="<?php echo base_url().'./assets/images/konten/'.$f['gambar'];?>" alt="" class="img-responsive">
 		<div class="fh5co-box animate-box">
-			<?php foreach ($foot as $f) {?>	
 		<iframe width="450" height="315" src="<?php echo $f['link'];?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 			<h2><?php echo $f['taskTitle'];?></h2>

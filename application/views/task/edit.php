@@ -29,7 +29,7 @@ $gambar = $taskInfo->gambar;
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" action="<?php echo base_url() ?>task/editTask" method="post" id="editTask" role="form">
+                    <form enctype="multipart/form-data" role="form" action="<?php echo base_url() ?>task/editTask" method="post" id="editTask" role="form">
                         <div class="box-body">
                         <div class="row">
                                 <div class="col-md-6">                                
@@ -56,15 +56,20 @@ $gambar = $taskInfo->gambar;
                                         <input type="text" class="form-control" id="link" value="<?php echo $link; ?>" name="link">
                                     </div>
                                 </div>
-                                <?php } elseif ($tipe=="konten" || $tipe=="head") {?>
+                                <?php }else {?>
+                                    <input type="hidden" class="form-control" id="link" value="" name="link">                                    
+                                <?php } ?>
                                     <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="gambar">Picture</label></br>
+                                        <?php if(empty($gambar)){ ?>
+                                        <label><i>This Picture Empty</i></label></br> 
+                                        <?php }else{?>
                                         <img width="250px" src="<?php echo base_url().'./assets/images/konten/'.$gambar;?>">
-                                        <input type="file" value="<?php echo $gambar;?>" name="gambar" class="dropify" data-height="250">
+                                       <?php } ?>
+                                        <input type="file" value="<?php echo $gambar;?>" name="gambar" class="dropify" >
                                     </div>
                                 </div>
-                                <?php }?>
 
                                
 
