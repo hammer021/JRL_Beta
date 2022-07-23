@@ -83,7 +83,7 @@ class Booking_model extends CI_Model
      */
     function getBookingInfo($bookingId)
     {
-        $this->db->select('bookingId, roomName, description');
+        $this->db->select('*');
         $this->db->from('tbl_booking');
         $this->db->where('bookingId', $bookingId);
         $this->db->where('isDeleted', 0);

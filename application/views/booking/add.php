@@ -20,7 +20,7 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="addBooking" action="<?php echo base_url() ?>booking/addNewBooking" method="post" role="form">
+                    <form enctype="multipart/form-data" role="form" id="addBooking" action="<?php echo base_url() ?>booking/addNewBooking" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
@@ -30,10 +30,20 @@
                                     </div>
                                     
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="description">Description</label>
-                                        <textarea class="form-control required" id="description" name="description"></textarea>
+                                        <textarea  onKeyPress="check_length(this.form)" onKeyDown="check_length(this.form)" rows="4" cols="50" class="form-control required" id="description" name="description"></textarea>
+                                        <input  disabled size=1 value=75 name=text_num> Characters Left
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="gambar">Picture</label>
+                                        <input type="file" name="gambar" class="dropify" data-height="250">
+                                        <p>sertakan ukuran foto 840x450 px</p>
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -77,5 +87,35 @@
             </div>
         </div>    
     </section>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.dropify').dropify({
+            messages: {
+                default: 'Drag atau drop untuk memilih gambar',
+                replace: 'Ganti',
+                remove:  'Hapus',
+                error:   'error'
+            }
+        });
+    });
+     
+</script>
+<script language=JavaScript>
+function check_length(my_form)
+{
+maxLen = 75; // max number of characters input
+if (my_form.description.value.length >= maxLen) {
+// Alert message if maximum limit is reached. 
+// If required Alert can be removed. 
+var msg = "You have reached your maximum limit of characters allowed";
+alert(msg);
+// Reached the Maximum length so trim the textarea
+	my_form.description.value = my_form.description.value.substring(0, maxLen);
+ }
+else{ // Maximum length not reached so update the value of my_text counter
+	my_form.text_num.value = maxLen - my_form.description.value.length;
+}
+}
+</script>
     
 </div>

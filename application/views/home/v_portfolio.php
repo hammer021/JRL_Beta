@@ -39,7 +39,8 @@
 
 		?>
 		<div class="col-md-4">
-			<a href="#" ><img src="<?php echo base_url().'./assets/images/'.$port_gambar;?>" class="img-responsive"></a>
+			<a href="#" >
+			<img height="450" width="840" src="<?php echo base_url().'./assets/images/portofolio/'.$port_gambar;?>" class="img-responsive"></a>
 				<div class="v-align">
 					<div class="v-align-middle"><br/>
 						<h3 style="color:black;" class="title"><?php echo $port_judul;?></h3>
