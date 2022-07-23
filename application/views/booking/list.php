@@ -83,7 +83,7 @@
                         <td><?php echo date("d-m-Y", strtotime($record->createdDtm)) ?></td>
                         <td class="text-center">
                             <a class="btn btn-sm btn-info" href="<?php echo base_url().'EditPortfolio/'.$record->bookingId; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a class="btn btn-sm btn-danger deleteBooking" href="#" data-bookingid="<?php echo $record->bookingId; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                            <a  onclick="return confirm('Are you sure to delete this Portfolio ?')" class="btn btn-sm btn-danger" href="<?php echo base_url().'deletePortfolio/'.$record->bookingId; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php

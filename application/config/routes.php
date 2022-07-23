@@ -77,6 +77,7 @@ $route['editOld/(:num)'] = "user/editOld/$1";
 $route['editUser'] = "user/editUser";
 $route['deleteUser'] = "user/deleteUser";
 $route['deleteContent/(:any)'] = "task/deleteContent/$1";
+$route['deletePortfolio/(:any)'] = "booking/deletePort/$1";
 $route['profile'] = "user/profile";
 $route['profile/(:any)'] = "user/profile/$1";
 $route['profileUpdate'] = "user/profileUpdate";

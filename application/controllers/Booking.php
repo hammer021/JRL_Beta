@@ -264,6 +264,34 @@ class Booking extends BaseController
             }
         }
     }
+
+    function deletePort($id)
+    {
+        if(!$this->isAdmin())
+        {
+            echo(json_encode(array('status'=>'access')));
+        }
+        else
+        {
+            $_id = $this->db->get_where('tbl_booking',['bookingId' => $id])->row();
+            $query = $this->db->delete('tbl_booking',['bookingId'=>$id]);
+            if($query){
+                unlink("./assets/images/portofolio/".$_id->gambar);
+                $this->session->set_flashdata('success', 'Delete successfully');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Delete failed');
+            }
+            
+            redirect('PortfolioList');
+        }
+    }
+
+
+
+
+
 }
 
 ?>
