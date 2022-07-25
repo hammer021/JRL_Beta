@@ -151,9 +151,7 @@
             }
             ?>
            <?php
-            if($is_admin == 1 ||
-                (array_key_exists('Booking', $access_info) 
-                && ($access_info['Booking']['list'] == 1 || $access_info['Booking']['total_access'] == 1)))
+            if($is_admin == 1 )
             {
               ?>
             <li>

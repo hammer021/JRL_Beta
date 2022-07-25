@@ -357,6 +357,13 @@ class User_model extends CI_Model
         
         return $query->row();
     }
+    public function graph()
+	{
+		$data = $this->db->query("SELECT tbl_users.refferal, COUNT(tbl_users.refferal) 
+        AS jumlah FROM tbl_users GROUP BY tbl_users.refferal");
+		return $data->result();
+	}
+
 
 }
 
