@@ -22,6 +22,7 @@
                 <a href="<?php echo base_url().'Home/'.$reff; ?>" class="small-box-footer">Open <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
+            <?php if ($is_admin==1) {?>
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-aqua">
@@ -35,6 +36,7 @@
                 <a href="<?php echo base_url(); ?>task" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
+            <?php }?>
             
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
