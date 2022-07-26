@@ -108,6 +108,7 @@ if(!function_exists('emailConfig'))
 {
     function emailConfig()
     {
+        $CI = &get_instance();
         $CI->load->library('email');
         $config['protocol'] = PROTOCOL;
         $config['smtp_host'] = SMTP_HOST;
