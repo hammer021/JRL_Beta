@@ -348,7 +348,7 @@ class User_model extends CI_Model
      */
     function getUserInfoWithRole($userId)
     {
-        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, BaseTbl.isAdmin, BaseTbl.roleId,BaseTbl.myreff, Roles.role');
+        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, BaseTbl.isAdmin, BaseTbl.roleId ,BaseTbl.updatedreff,BaseTbl.myreff, Roles.role');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Roles','Roles.roleId = BaseTbl.roleId');
         $this->db->where('BaseTbl.userId', $userId);
@@ -359,9 +359,16 @@ class User_model extends CI_Model
     }
     public function graph()
 	{
-		$data = $this->db->query("SELECT tbl_users.refferal, COUNT(tbl_users.refferal) 
-        AS jumlah FROM tbl_users GROUP BY tbl_users.refferal");
-		return $data->result();
+		$query = $this->db->query("SELECT tbl_users.refferal, COUNT(tbl_users.refferal) 
+        AS jumlah FROM tbl_users GROUP BY tbl_users.refferal ORDER BY jumlah DESC LIMIT 10");
+		
+        if($query->num_rows() > 0){
+            foreach($query->result() as $data){
+                $hasil[] = $data;
+            }
+            return $hasil;
+        }
+
 	}
 
 

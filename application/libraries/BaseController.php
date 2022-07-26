@@ -18,6 +18,7 @@ class BaseController extends CI_Controller {
 	protected $lastLogin = '';
 	protected $module = '';
 	protected $myreff = '';
+	protected $updatedreff = '';
 
 	/**
 	 * This is default constructor
@@ -43,6 +44,7 @@ class BaseController extends CI_Controller {
 			$this->isAdmin = $this->session->userdata ( 'isAdmin' );
 			$this->accessInfo = $this->session->userdata ( 'accessInfo' );
 			$this->myreff = $this->session->userdata ( 'myreff' );
+			$this->updatedreff = $this->session->userdata ( 'updatedreff' );
 			
 			$this->global ['name'] = $this->name;
 			$this->global ['role'] = $this->role;
@@ -51,6 +53,7 @@ class BaseController extends CI_Controller {
 			$this->global ['is_admin'] = $this->isAdmin;
 			$this->global ['access_info'] = $this->accessInfo;
 			$this->global ['myreff'] = $this->myreff;
+			$this->global ['updatedreff'] = $this->updatedreff;
 		}
 	}
 	

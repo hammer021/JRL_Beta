@@ -68,9 +68,48 @@
               </div>
             </div><!-- ./col -->
             <?php }?>
-            
+            <div class="container">
+        <h3>
+        Perolehan User 
+        </h3>
+        <canvas id="canvas" width="900" height="280"></canvas>
+        </div>
 
 
           </div>
     </section>
+    <?php
+        foreach($graph as $data1){
+            $refferal[] = $data1->refferal;
+            $jumlah[] = (float) $data1->jumlah;
+        }
+    ?>
+
+        
 </div>
+
+
+<script type="text/javascript" src="<?php echo base_url().'assets/plugins/chartjs/Chart.js'?>"></script>
+<script>
+ 
+            var lineChartData = {
+                labels : <?php echo json_encode($refferal);?>,
+                datasets : [
+                     
+                    {
+                        
+                        fillColor: ['rgb(255, 99, 132)','rgb(60, 179, 113)', 'rgba(56, 86, 255, 0.87)', 'rgb(175, 238, 239)'],
+                        strokeColor: ['rgb(255, 99, 132)','rgb(60, 179, 113)', 'rgba(56, 86, 255, 0.87)', 'rgb(175, 238, 239)'],
+                        
+                        
+                        data : <?php echo json_encode($jumlah);?>
+                    }
+ 
+                ]
+                 
+            }
+ 
+        var myBar = new Chart(document.getElementById("canvas").getContext("2d")).Bar(lineChartData);
+     
+
+    </script>

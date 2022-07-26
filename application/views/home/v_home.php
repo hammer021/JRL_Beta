@@ -48,7 +48,7 @@ $linkref = $reff;
 					<span class="icon"><img height="700" width="40%" src="<?php echo base_url().'./assets/images/konten/'.$k['gambar'];?>" class="img-responsive"></span>
 					<h3><?php echo $k['taskTitle'];?></h3>
 					<p><?php echo $k['description'];?></p>
-					<p><a href="<?php echo base_url().'portfolio'?>" class="btn btn-primary btn-outline with-arrow">Learn more <i class="icon-arrow-right"></i></a></p>
+					<!-- <p><a href="<?php echo base_url().'portfolio'?>" class="btn btn-primary btn-outline with-arrow">Learn more <i class="icon-arrow-right"></i></a></p> -->
 				</div>
 				<?php }
 					$i++;}?>

@@ -31,7 +31,8 @@ class User extends BaseController
         $data['reff']= $this->session->userdata ( 'myreff' );
         $data['countTask'] = $this->Task_model->taskAllCount();        
         $data['countUser'] = $this->user_model->userAllCountReff($this->myreff);        
-        $data['countAllUser'] = $this->user_model->userAllCount();        
+        $data['countAllUser'] = $this->user_model->userAllCount();   
+        $data['graph']=$this->user_model->graph();
         $this->loadViews("general/dashboard", $this->global, $data , NULL);
     }
     
@@ -391,9 +392,12 @@ class User extends BaseController
         }
         else
         {
-            $refferal = $this->input->post('refferal');            
+            $refferal = $this->input->post('refferal'); 
+            $updatedreff = 1;           
            
-            $usersData = array('myreff'=>$refferal, 'updatedBy'=>$this->vendorId,
+            $usersData = array( 'myreff'=>$refferal, 
+                                'updatedBy'=>$this->vendorId,
+                                'updatedreff'=>$updatedreff,
                                 'updatedDtm'=>date('Y-m-d H:i:s'));
                 
                 $result = $this->user_model->changePassword($this->vendorId, $usersData);

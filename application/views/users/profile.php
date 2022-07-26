@@ -6,6 +6,7 @@ $mobile = $userInfo->mobile;
 $roleId = $userInfo->roleId;
 $role = $userInfo->role;
 $myreff = $userInfo->myreff;
+$updatedreff = $userInfo->updatedreff;
 ?>
 
 <div class="content-wrapper">
@@ -128,7 +129,8 @@ $myreff = $userInfo->myreff;
                                 </div>
                             </form>
                         </div>   
-                        
+                        <?php if ($updatedreff == 0) {?>
+                          
                         <!-- CHANGE REFF -->
                         <div class="<?= ($active == "changereff")? "active" : "" ?> tab-pane" id="changereff">
                             <form role="form" action="<?php echo base_url() ?>changeRefferal" method="post">
@@ -136,7 +138,7 @@ $myreff = $userInfo->myreff;
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="inputRefferal">Enter New Refferal</label>
+                                                <label for="inputRefferal">Enter New Refferal  <i>(Kesempatan 1 kali)</i></label>
                                                 <input type="refferal" class="form-control" id="inputRefferal" placeholder="New Refferal" name="refferal" maxlength="15" required>
                                             </div>
                                         </div>
@@ -149,6 +151,9 @@ $myreff = $userInfo->myreff;
                                 </div>
                             </form>
                         </div> 
+                        <?php } ?>
+
+
                     </div>
                 </div>
             </div>
