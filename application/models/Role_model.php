@@ -1,12 +1,5 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-/**
- * Class : Role_model (Role Model)
- * User model class to get to handle role related data 
- * @author : Kishor Mali
- * @version : 1.2
- * @since : 22 Jan 2021
- */
 class Role_model extends CI_Model
 {
     /**

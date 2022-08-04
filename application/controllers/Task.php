@@ -2,13 +2,6 @@
 
 require APPPATH . '/libraries/BaseController.php';
 
-/**
- * Class : Task (TaskController)
- * Task Class to control task related operations.
- * @author : Kishor Mali
- * @version : 1.5
- * @since : 19 Jun 2022
- */
 class Task extends BaseController
 {
     /**
@@ -200,10 +193,6 @@ class Task extends BaseController
     }
 
     
-    /**
-     * This function is used load task edit information
-     * @param number $taskId : Optional : This is task id
-     */
     function edit($taskId = NULL)
     {
         if(!$this->hasUpdateAccess())

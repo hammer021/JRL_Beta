@@ -1,11 +1,6 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
- * Class : Home (RolesController)
- * Home Class to control role related operations.
- 
- */
 class Home extends CI_Controller
 {
     /**
@@ -17,7 +12,6 @@ class Home extends CI_Controller
         $this->load->model('Task_model', 'task');
         $this->load->model('Booking_model', 'porto');
         $this->load->model('User_model', 'user');
-        // $this->isLoggedIn();   
     }
     public function index()
     {
@@ -75,18 +69,9 @@ class Home extends CI_Controller
                 $this->load->view("home/addUser", $data);
             }
 		$this->load->view ( 'home/v_footer' );
-
-           
-        // }
     }
     function addNewUser()
     {
-        // if(!$this->isAdmin())
-        // {
-        //     $this->loadThis();
-        // }
-        // else
-        // {
             $this->load->library('form_validation');
             
             $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
@@ -128,7 +113,6 @@ class Home extends CI_Controller
                 
                 redirect('Home');
             }
-        // }
     }
     function RandomReff($panjang)
     {          

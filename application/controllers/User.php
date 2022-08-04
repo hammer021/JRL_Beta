@@ -2,13 +2,6 @@
 
 require APPPATH . '/libraries/BaseController.php';
 
-/**
- * Class : User (UserController)
- * User Class to control all user related operations.
- * @author : Kishor Mali
- * @version : 1.1
- * @since : 15 November 2016
- */
 class User extends BaseController
 {
     /**
@@ -40,13 +33,7 @@ class User extends BaseController
      * This function is used to load the user list
      */
     function userListing()
-    {
-        // if(!$this->isAdmin())
-        // {
-        //     $this->loadThis();
-        // }
-        // else
-        // {        
+    {  
             $searchText = $this->security->xss_clean($this->input->post('searchText'));
             $data['searchText'] = $searchText;
             $data['page']="UserAll";
@@ -67,13 +54,7 @@ class User extends BaseController
         // }
     }
     function MyUser()
-    {
-        // if(!$this->isAdmin())
-        // {
-        //     $this->loadThis();
-        // }
-        // else
-        // {        
+    {    
             $searchText = $this->security->xss_clean($this->input->post('searchText'));
             $data['searchText'] = $searchText;
             $data['page']="MyUser";
@@ -92,14 +73,7 @@ class User extends BaseController
             $this->loadViews("users/users", $this->global, $data, NULL);
         // }
     }
-    /**
-     * This function is used to load the add new form
-     */
-    
-
-    /**
-     * This function is used to check whether email already exist or not
-     */
+   
     function checkEmailExists()
     {
         $userId = $this->input->post("userId");
@@ -114,15 +88,7 @@ class User extends BaseController
         if(empty($result)){ echo("true"); }
         else { echo("false"); }
     }
-    
-    
-
-    /**
-     * This function is used to add new user to the system
-     */
-    
-
-    
+        
     /**
      * This function is used load user edit information
      * @param number $userId : Optional : This is user id

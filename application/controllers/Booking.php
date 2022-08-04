@@ -2,13 +2,6 @@
 
 require APPPATH . '/libraries/BaseController.php';
 
-/**
- * Class : Booking (BookingController)
- * Booking Class to control booking related operations.
- * @author : Kishor Mali
- * @version : 1.5
- * @since : 18 Jun 2022
- */
 class Booking extends BaseController
 {
     /**
@@ -45,18 +38,12 @@ class Booking extends BaseController
         else
         {        
             $searchText = $this->security->xss_clean($this->input->post('searchText'));
-            $data['searchText'] = $searchText;
-            
-            $this->load->library('pagination');
-            
+            $data['searchText'] = $searchText;            
+            $this->load->library('pagination');            
             $count = $this->bm->bookingListingCount($searchText);
-
-			$returns = $this->paginationCompress ( "bookingListing/", $count, 10 );
-            
-            $data['records'] = $this->bm->bookingListing($searchText, $returns["page"], $returns["segment"]);
-            
-            $this->global['pageTitle'] = 'JRL : Portfolio';
-            
+			$returns = $this->paginationCompress ( "bookingListing/", $count, 10 );            
+            $data['records'] = $this->bm->bookingListing($searchText, $returns["page"], $returns["segment"]);            
+            $this->global['pageTitle'] = 'JRL : Portfolio';            
             $this->loadViews("booking/list", $this->global, $data, NULL);
         }
     }
@@ -120,18 +107,14 @@ class Booking extends BaseController
                         $config['height']= 450;
                         $config['new_image']= './assets/images/portofolio/'.$gbr['file_name'];
                         $this->load->library('image_lib', $config);
-                        $this->image_lib->resize();
-        
+                        $this->image_lib->resize();        
                         $gambar=$gbr['file_name'];
-
                         $bookingInfo = array(   'roomName'=>$roomName, 
                                                 'description'=>$description, 
                                                 'gambar'=>$gambar,    
                                                 'createdBy'=>$this->vendorId, 
-                                                'createdDtm'=>date('Y-m-d H:i:s'));
-                
-                        $result = $this->bm->addNewBooking($bookingInfo);
-                        
+                                                'createdDtm'=>date('Y-m-d H:i:s'));                
+                        $result = $this->bm->addNewBooking($bookingInfo);                        
                         if($result > 0) {
                             $this->session->set_flashdata('success', 'New Portfolio created successfully');
                         } else {
@@ -147,11 +130,7 @@ class Booking extends BaseController
                 }else{
                     $this->session->set_flashdata('error', 'The uploaded image is empty');
                     redirect('PortfolioList');
-
-                }
-
-
-                
+                }                
             }
         }
     }
@@ -229,17 +208,14 @@ class Booking extends BaseController
                         $config['height']= 450;
                         $config['new_image']= './assets/images/portofolio/'.$gbr['file_name'];
                         $this->load->library('image_lib', $config);
-                        $this->image_lib->resize();
-        
+                        $this->image_lib->resize();        
                         $gambar=$gbr['file_name'];
                         $bookingInfo = array(   'roomName'=>$roomName, 
                                                 'description'=>$description, 
                                                 'gambar'=>$gambar,    
                                                 'updatedBy'=>$this->vendorId, 
-                                                'updatedDtm'=>date('Y-m-d H:i:s'));
-                
-                        $result = $this->bm->editBooking($bookingInfo, $bookingId);
-                        
+                                                'updatedDtm'=>date('Y-m-d H:i:s'));                
+                        $result = $this->bm->editBooking($bookingInfo, $bookingId);                        
                         if($result == true)
                         {
                             $this->session->set_flashdata('success', 'Portfolio updated successfully');
@@ -247,10 +223,8 @@ class Booking extends BaseController
                         else
                         {
                             $this->session->set_flashdata('error', 'Portfolio updation failed');
-                        }
-                        
-                        redirect('PortfolioList');
-                    
+                        }                        
+                        redirect('PortfolioList');                    
                     }else {
                         $this->session->set_flashdata('error', 'The uploaded image is failed');
                         redirect('PortfolioList');
@@ -258,9 +232,7 @@ class Booking extends BaseController
                 }else {
                     $this->session->set_flashdata('error', 'The image is Null');
                         redirect('PortfolioList');
-                }
-
-               
+                }               
             }
         }
     }
@@ -283,15 +255,8 @@ class Booking extends BaseController
             {
                 $this->session->set_flashdata('error', 'Delete failed');
             }
-            
             redirect('PortfolioList');
         }
     }
-
-
-
-
-
 }
-
 ?>
