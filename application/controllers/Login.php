@@ -154,15 +154,12 @@ class Login extends CI_Controller
                 {
                     $data1['reset_link'] = base_url() . "resetPasswordConfirmUser/" . $data['activation_id'] . "/" . $encoded_email;
                     $userInfo = $this->login_model->getCustomerInfoByEmail($email);
-
                     if(!empty($userInfo)){
                         $data1["name"] = $userInfo->name;
                         $data1["email"] = $userInfo->email;
                         $data1["message"] = "Reset Your Password";
                     }
-
                     $sendStatus = resetPasswordEmail($data1);
-
                     if($sendStatus){
                         $status = "send";
                         setFlashData($status, "Reset password link sent successfully, please check mails.");
@@ -257,7 +254,6 @@ class Login extends CI_Controller
             redirect("/login");
         }
     }
-
     private function accessInfo($roleId)
     {
         $finalMatrixArray = [];

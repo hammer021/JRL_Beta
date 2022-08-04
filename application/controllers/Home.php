@@ -3,16 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller
 {
-    /**
-     * This is default constructor of the class
-     */
+    
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Task_model', 'task');
         $this->load->model('Booking_model', 'porto');
+        $this->load->model('Message_model', 'Msg');
         $this->load->model('User_model', 'user');
     }
+
     public function index()
     {
         $data['head']=$this->task->getKonten('head');
@@ -94,6 +94,8 @@ class Home extends CI_Controller
                 $roleId = $this->input->post('role');
                 $refferal = $this->input->post('refferal');
                 $mobile = $this->security->xss_clean($this->input->post('mobile'));
+                $mobile = intval($mobile);
+                $mobile = substr($mobile,0,2) != "62" ? "+62".$mobile : "+".$mobile;
                 $isAdmin = 0;
                 $myreff = $this->RandomReff(11);
                 
@@ -104,9 +106,11 @@ class Home extends CI_Controller
                 
                 $this->load->model('user_model');
                 $result = $this->user_model->addNewUser($userInfo);
-                
+                $pesan=
+                "Selamat ".$name." telah bergabung di Betavers, dengan kode refferal anda = ".$myreff.". Kode refferal hanya bisa diubah satu kali di menu profile.";
                 if($result > 0){
                     $this->session->set_flashdata('success', 'New User created successfully');
+                    $this->Msg->kirimWablas($mobile,$pesan);
                 } else {
                     $this->session->set_flashdata('error', 'User creation failed');
                 }
