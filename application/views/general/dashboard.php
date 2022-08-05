@@ -68,14 +68,14 @@
               </div>
             </div><!-- ./col -->
             <?php }?>
-            <div class="container">
-        <h3>
-        Perolehan User 
-        </h3>
-        <canvas id="canvas" width="900" height="280"></canvas>
-        </div>
+          </div>
+          <!-- End Row -->
 
-
+          <div class="container">
+            <h3>
+            Perolehan User 
+            </h3>
+            <canvas id="canvas" width="900" height="280"></canvas>
           </div>
     </section>
     <?php

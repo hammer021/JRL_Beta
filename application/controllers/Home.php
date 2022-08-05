@@ -11,6 +11,8 @@ class Home extends CI_Controller
         $this->load->model('Booking_model', 'porto');
         $this->load->model('Message_model', 'Msg');
         $this->load->model('User_model', 'user');
+        $this->load->library('googleplus');
+
     }
 
     public function index()
@@ -64,8 +66,7 @@ class Home extends CI_Controller
             else {
                 $this->load->model('user_model');
                 $data['roles'] = $this->user_model->getUserRoles();
-                $data['reff'] = $refferal;               
-    
+                $data['reff'] = $refferal;
                 $this->load->view("home/addUser", $data);
             }
 		$this->load->view ( 'home/v_footer' );
@@ -79,9 +80,7 @@ class Home extends CI_Controller
             $this->form_validation->set_rules('password','Password','required|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-
-            
+            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');            
             if($this->form_validation->run() == FALSE)
             {
                 $this->addNew();
@@ -101,8 +100,8 @@ class Home extends CI_Controller
                 
                 $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId,
                         'name'=> $name, 'mobile'=>$mobile, 'isAdmin'=>$isAdmin,
-                         'createdDtm'=>date('Y-m-d H:i:s'),'myreff'=> $myreff,
-                        'refferal'=> $refferal);
+                         'createdDtm'=>date('Y-m-d H:i:s'),'myreff'=> $myreff, 
+                    'oauth_provider' => 'common','refferal'=> $refferal );
                 
                 $this->load->model('user_model');
                 $result = $this->user_model->addNewUser($userInfo);
@@ -127,6 +126,62 @@ class Home extends CI_Controller
             $string .= $karakter{$pos};   
         }   
         return $string;  
+    }
+
+    
+    public function registration()
+    {
+        if (isset($_GET['code'])) {
+
+            $this->googleplus->getAuthenticate($_GET['code']);
+            $_SESSION['token'] = $this->googleplus->getAccessToken();
+            // header('Location: ' . filter_var('http://localhost/google-login-ci3-master/',
+            // FILTER_SANITIZE_URL));
+        }
+        if (isset($_SESSION['token'])) {
+            $this->googleplus->setAccessToken($_SESSION['token']);
+        }
+        if ($this->googleplus->getAccessToken()) {
+            $_SESSION['login'] = 'true';
+            $_SESSION['user_data'] = $this->googleplus->getUserInfo();
+
+            //redirect('welcome/profile'); $aa = $_GET['code'];
+
+            $gp = $_SESSION['user_data'];
+            
+            // die();
+            $email = $gp['email'];
+            $cek = $this->db->get_where('t_akun', ['email' => $email])->num_rows();
+            if ($cek > 0) {
+                $this->profile($_SESSION['login'], $gp);
+            } else {
+                $myreff = $this->RandomReff(11);
+                $this->db->insert('tbl_users', array(
+                    'email' => $gp['email'],
+                    'name' => $gp['name'],
+                    // 'nama_belakang' => $gp['family_name'],
+                    'updatedreff' => '0',
+                    'roleId' => '2',
+                    'myreff' => $myreff,
+                    'oauth_provider' => 'google',
+                    'oauth_uid' => $gp['id']
+                ));
+
+                $this->profile($_SESSION['login'], $gp);
+            }
+        }
+    }
+
+    public function profile($login, $data = array())
+    {
+
+        if ($login != "true") {
+            redirect('');
+        }
+
+        $user = $this->db->get_where('t_akun', ['email' => $data['email']])->row_array();
+        $this->session->set_userdata($user);
+        redirect('dashboard');
     }
 
 }

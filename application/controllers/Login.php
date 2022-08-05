@@ -9,6 +9,7 @@ class Login extends CI_Controller
     {
         parent::__construct();
         $this->load->model('login_model');
+
     }
 
     /**
@@ -264,6 +265,8 @@ class Login extends CI_Controller
         }
         return $finalMatrixArray;
     }
+
+
 }
 
 ?>
